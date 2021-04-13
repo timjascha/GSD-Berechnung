@@ -34,6 +34,26 @@ def pixelsize():
     pixels = m.sqrt(apixel) #Kantenlänge Pixel
     psize.value = str(pixels)
 
+def picturecount():
+    s = float(resw.value) * (float(gsd_v.value)*10)
+    print("s=" + str(s))
+    b = s*(1-(float(ppro_v.value)/100))
+    print("b=" + str(b))
+    nm = float(areal_v.value)/b+1
+    nm = round(nm+1)
+    print("nm+" + str(nm))
+    nl = nm +1
+    print("nl=" + str(nl))
+    d = s*(1-(float(qpro_v.value)/100))
+    print("d=" + str(d))
+    nb = float(areaw_v.value)/d+1
+    nb = round(nb+1)
+    print("nb=" + str(nb))
+    n = nl*nb
+    print("n=" + str(n))
+    pct.value = str(n)
+
+
 app = App(title="GSD-Berechner", width=550, height=350,layout="grid")
 drone_t = Text(app, text="Drohne:", grid=[0,0])
 drone=Combo(app, options=["-Custom-","DJI Inspire 1 - Zenmuse X5"],grid=[1,0], command=update)
@@ -57,5 +77,15 @@ psize = TextBox(app, text="Pixelgröße", grid=[1,6])
 pcount_t = Text(app, text="Pixelanzahl", grid=[0,7])
 pcount = TextBox(app, text="Pixelanzahl", grid=[1,7])
 psize_but = PushButton(app, text="Pixelgröße berechnen", command=pixelsize, grid=[2,7])
+areaw_t = Text(app, text="Breite des Bereichs in km", grid=[0,8])
+areaw_v = TextBox(app, text="Breite des Bereichs in km", grid=[1,8])
+areal_t = Text(app, text="Länge des Bereichs in km", grid=[0,9])
+areal_v = TextBox(app, text="Länge des Bereichs in km", grid=[1,9])
+qpro_t = Text(app, text="Querüberdeckung", grid=[0,10])
+qpro_v = TextBox(app, text="Querüberdeckung", grid=[1,10])
+ppro_t = Text(app, text="Längsüberdeckung", grid=[0,11])
+ppro_v = TextBox(app, text="Längsüberdeckung", grid=[1,11])
+pcbut = PushButton(app, text="Bildanzahl berechnen", command=picturecount, grid=[0,12])
+pct = TextBox(app, text=" ", grid=[1,12])
 
 app.display()
