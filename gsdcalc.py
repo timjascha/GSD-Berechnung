@@ -16,6 +16,17 @@ def update():
         sensw.value = "17.3"
         sensh.value = "13"
         fole.value = "15"
+    elif drone.value=="Test":
+        resw.value = "14216"
+        resh.value = "14216"
+        sensw.value = "79"
+        sensh.value = "79"
+        fole.value = "102"
+        qpro_v.value = "30"
+        ppro_v.value = "60"
+        areal_v.value = "17100000"
+        areaw_v.value = "15500000"
+        gsd_v.value = "5"
 
 def calcgsd():
     x=float(gsd_v.value)/100 #gsd_v.value gibt die gewünschte GSD in mm an
@@ -56,7 +67,7 @@ def picturecount():
 
 app = App(title="GSD-Berechner", width=550, height=350,layout="grid")
 drone_t = Text(app, text="Drohne:", grid=[0,0])
-drone=Combo(app, options=["-Custom-","DJI Inspire 1 - Zenmuse X5"],grid=[1,0], command=update)
+drone=Combo(app, options=["-Custom-","DJI Inspire 1 - Zenmuse X5", "Test"],grid=[1,0], command=update)
 gsd_vt = Text(app, text="Gewünschte GSD", grid=[0,1])
 gsd_v = TextBox(app, grid=[1,1])
 gsd_ht = Text(app, text="Benötigte Höhe", grid=[0,2])
